@@ -1,8 +1,8 @@
 #!/bin/bash
 
-nasm -g -f elf64 $1 -o $1.o
-ld $1.o -o $1.run
+nasm -f elf32 -g -F dwarf "$1" -o "$1.o"
 
-rm *.o
+ld -m elf_i386 "$1.o" -o "$1.run"
 
 echo "Executable: $1.run"
+
